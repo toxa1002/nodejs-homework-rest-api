@@ -4,7 +4,7 @@ const router = new express.Router();
 const {
   schemaCreateContact,
   schemaUpdateContact,
-} = require('./contactsValidationSchemes');
+} = require('../../schemas/contactsValidationSchema');
 
 const {
   getContacts,
