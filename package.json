@@ -1,5 +1,5 @@
 {
-  "name": "homework_nodejs_02_express",
+  "name": "homework_nodejs_03_mongodb",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -14,7 +14,11 @@
     "dotenv": "16.0.0",
     "express": "4.17.1",
     "joi": "17.6.0",
-    "morgan": "1.10.0"
+    "joi-objectid": "4.0.2",
+    "mongodb": "^4.5.0",
+    "mongoose": "^6.2.10",
+    "morgan": "1.10.0",
+    "nanoid": "3.3.2"
   },
   "devDependencies": {
     "eslint": "7.19.0",
