@@ -1,5 +1,11 @@
-const app = require('./app')
+const app = require('./app');
+const db = require('./db/dbMongoose');
 
-app.listen(3000, () => {
-  console.log("Server running. Use our API on port: 3000")
-})
+const PORT = process.env.PORT || 3001;
+
+db.then(() => {
+  app.listen(PORT, () => console.log(`Server running at port: ${PORT}`));
+}).catch(error => {
+  console.error(`Server not running. Error message: ${error.message}`);
+  process.exit(1);
+});
