@@ -1,7 +1,4 @@
 const express = require('express');
-const router = new express.Router();
-
-
 const {
   getContacts,
   getContactById,
@@ -10,14 +7,58 @@ const {
   updateFavorite,
   removeContact,
 } = require('../../controllers/contacts');
+const {
+  validateAuth,
+  validateBody,
+  validateParams,
+  controlWrapper,
+} = require('../../middlewares');
+const {
+  validationCreateContact,
+  validationUpdateContact,
+  validationFavoriteContact,
+  validationContactId,
+} = require('../../service/validation');
 
-router.get('/', getContacts).post('/', addContact);
+const router = new express.Router();
 
 router
-  .get('/:contactId', getContactById)
-  .put('/:contactId', updateContact)
-  .delete('/:contactId', removeContact);
+  .get('/', validateAuth, controlWrapper(getContacts))
+  .post(
+    '/',
+    [validateAuth, validateBody(validationCreateContact)],
+    controlWrapper(addContact),
+  );
 
-router.patch('/:contactId/favorite', updateFavorite);
+router
+  .get(
+    '/:contactId',
+    [validateAuth, validateParams(validationContactId)],
+    controlWrapper(getContactById),
+  )
+  .put(
+    '/:contactId',
+    [
+      validateAuth,
+      validateBody(validationUpdateContact),
+      validateParams(validationContactId),
+    ],
+    controlWrapper(updateContact),
+  )
+  .delete(
+    '/:contactId',
+    [validateAuth, validateParams(validationContactId)],
+    controlWrapper(removeContact),
+  );
+
+router.patch(
+  '/:contactId/favorite',
+  [
+    validateAuth,
+    validateBody(validationFavoriteContact),
+    validateParams(validationContactId),
+  ],
+  controlWrapper(updateFavorite),
+);
 
 module.exports = router;
