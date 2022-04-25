@@ -32,11 +32,26 @@ const STATUS = {
 };
 
 const MESSAGES = {
-  INVALIDSIGNATURE: 'Invalid signature',
+  INVALIDSIGNATURE: 'invalid signature',
   NOTAUTHORIZED: 'Not authorized',
   INTERNALSERVERERROR: 'Internal Server Error',
   BEARER: 'Bearer',
-  JWTEXPIRED: 'JWT expired',
+  JWTEXPIRED: 'jwt expired',
+};
+
+const DIRNAME = {
+  AVATARS: 'avatars',
+  PUBLIC: 'public',
+  TEMP: 'temp',
+};
+
+const FILESIZE = {
+  HALFMB: 524288,
+  ONEMB: 1048576,
+  TWOMB: 2097152,
+  THREEMB: 3145728,
+  FOURMB: 4194304,
+  FIVEMB: 5242880,
 };
 
 module.exports = {
@@ -50,4 +65,6 @@ module.exports = {
   HTTP_STATUS_CODE,
   STATUS,
   MESSAGES,
+  DIRNAME,
+  FILESIZE,
 };

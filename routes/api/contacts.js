@@ -22,6 +22,9 @@ const {
 
 const router = new express.Router();
 
+
+// http://localhost:3001/api/contacts
+
 router
   .get('/', validateAuth, controlWrapper(getContacts))
   .post(
@@ -29,6 +32,9 @@ router
     [validateAuth, validateBody(validationCreateContact)],
     controlWrapper(addContact),
   );
+
+
+// http://localhost:3001/api/contacts/:contactId
 
 router
   .get(
@@ -50,6 +56,9 @@ router
     [validateAuth, validateParams(validationContactId)],
     controlWrapper(removeContact),
   );
+
+
+// http://localhost:3001/api/contacts/:contactId/favorite
 
 router.patch(
   '/:contactId/favorite',
