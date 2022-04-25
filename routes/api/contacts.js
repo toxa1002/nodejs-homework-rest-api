@@ -1,25 +1,67 @@
-const express = require('express')
+const express = require('express');
+const {
+  getContacts,
+  getContactById,
+  addContact,
+  updateContact,
+  updateFavorite,
+  removeContact,
+} = require('../../controllers/contacts');
+const {
+  validateAuth,
+  validateBody,
+  validateParams,
+  controlWrapper,
+} = require('../../middlewares');
+const {
+  validationCreateContact,
+  validationUpdateContact,
+  validationFavoriteContact,
+  validationContactId,
+} = require('../../service/validation');
 
-const router = express.Router()
+const router = new express.Router();
 
-router.get('/', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+// http://localhost:3001/api/contacts
+router
+  .get('/', validateAuth, controlWrapper(getContacts))
+  .post(
+    '/',
+    [validateAuth, validateBody(validationCreateContact)],
+    controlWrapper(addContact),
+  );
 
-router.get('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+// http://localhost:3001/api/contacts/:contactId
+router
+  .get(
+    '/:contactId',
+    [validateAuth, validateParams(validationContactId)],
+    controlWrapper(getContactById),
+  )
+  .put(
+    '/:contactId',
+    [
+      validateAuth,
+      validateBody(validationUpdateContact),
+      validateParams(validationContactId),
+    ],
+    controlWrapper(updateContact),
+  )
+  .delete(
+    '/:contactId',
+    [validateAuth, validateParams(validationContactId)],
+    controlWrapper(removeContact),
+  );
 
-router.post('/', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+// http://localhost:3001/api/contacts/:contactId/favorite
+router.patch(
+  '/:contactId/favorite',
+  [
+    validateAuth,
+    validateBody(validationFavoriteContact),
+    validateParams(validationContactId),
+  ],
+  controlWrapper(updateFavorite),
+);
 
-router.delete('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
-
-router.put('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
-
-module.exports = router
+module.exports = router;
