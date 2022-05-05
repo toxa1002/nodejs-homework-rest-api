@@ -12,22 +12,17 @@ const {
 
 const router = new express.Router();
 
-// http://localhost:3001/api/auth/signup
+// http://localhost:3001/api/auth/signup  - Postman 
 router.post(
   '/signup',
   validateBody(validationSignupUser),
   controlWrapper(signup),
 );
 
-
-// http://localhost:3001/api/auth/login
+// http://localhost:3001/api/auth/login  - Postman 
 router.post('/login', validateBody(validationLoginUser), controlWrapper(login));
 
-// http://localhost:3001/api/auth/logout
-
-router.post('/login', validateBody(validationLoginUser), controlWrapper(login));
-
-
+// http://localhost:3001/api/auth/logout  - Postman 
 router.get('/logout', validateAuth, controlWrapper(logout));
 
 module.exports = router;

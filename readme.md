@@ -41,35 +41,71 @@
 
 ### Contacts:
 
-#### GET - http://localhost:3001/api/contacts/ --- Get All contacts.
+#### GET --- Get All contacts.
 
-#### GET - http://localhost:3001/api/contacts/:contactId --- Get contact by id ID.
+- http://localhost:3001/api/contacts/
 
-#### POST - http://localhost:3001/api/contacts/ --- Add new contact.
+#### GET --- Get contact by id ID.
 
-#### DELETE - http://localhost:3001/api/contacts/:contactId --- Remove contact by ID.
+- http://localhost:3001/api/contacts/:contactId
 
-#### PUT - http://localhost:3001/api/contacts/:contactId --- Update contact by ID.
+#### POST --- Add new contact.
 
-#### PATCH - http://localhost:3001/api/contacts/:contactId/favorite --- Update status "favorite" of contact by ID.
+- http://localhost:3001/api/contacts/
+
+#### DELETE --- Remove contact by ID.
+
+- http://localhost:3001/api/contacts/:contactId
+
+#### PUT --- Update contact by ID.
+
+- http://localhost:3001/api/contacts/:contactId
+
+#### PATCH --- Update status "favorite" of contact by ID.
+
+- http://localhost:3001/api/contacts/:contactId/favorite
 
 ### Auth:
 
-#### POST - http://localhost:3001/api/auth/signup --- User registration.
+#### POST --- User registration.
 
-#### POST - http://localhost:3001/api/auth/login --- Login user.
+- http://localhost:3001/api/auth/signup
 
-#### GET - http://localhost:3001/api/auth/logout --- User logging out.
+#### POST --- Login user.
+
+- http://localhost:3001/api/auth/login
+
+#### GET --- User logging out.
+
+- http://localhost:3001/api/auth/logout
 
 ### Users:
 
-#### GET - http://localhost:3001/api/users/current --- Information about current user.
+#### GET --- Information about current user.
+
+- http://localhost:3001/api/users/current
+
+#### PATCH --- Update current avatar.
+
+- http://localhost:3001/api/users/avatars
 
 #### PATCH - http://localhost:3001/api/users/:userId/subscription --- Update the user's "subscription".
 
+- http://localhost:3001/api/users/subscription
+
+#### POST --- Send the verification letter to the specified mail.
+
+- http://localhost:3001/api/users/verify
+
+#### GET --- Resend the verification letter to the specified mail.
+
+- http://localhost:3001/api/users/verify/:verificationToken
+
 ### Query:
 
-#### GET - http://localhost:3001/api/contacts?query --- Get All contacts by query.
+#### GET --- Get All contacts by query.
+
+- http://localhost:3001/api/contacts?query
 
 #### page = number.
 

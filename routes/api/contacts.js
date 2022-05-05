@@ -22,9 +22,7 @@ const {
 
 const router = new express.Router();
 
-
-// http://localhost:3001/api/contacts
-
+// http://localhost:3001/api/contacts  - Postman
 router
   .get('/', validateAuth, controlWrapper(getContacts))
   .post(
@@ -33,9 +31,7 @@ router
     controlWrapper(addContact),
   );
 
-
-// http://localhost:3001/api/contacts/:contactId
-
+// http://localhost:3001/api/contacts/:contactId  - Postman
 router
   .get(
     '/:contactId',
@@ -57,9 +53,7 @@ router
     controlWrapper(removeContact),
   );
 
-
-// http://localhost:3001/api/contacts/:contactId/favorite
-
+// http://localhost:3001/api/contacts/:contactId/favorite  - Postman
 router.patch(
   '/:contactId/favorite',
   [

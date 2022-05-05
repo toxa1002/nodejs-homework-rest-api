@@ -2,7 +2,7 @@ const { mkdir } = require('fs/promises');
 const app = require('./app');
 const db = require('./db/dbMongoose');
 
-const PORT = process.env.PORT || 3001;
+const { PORT } = require('./helpers/constants');
 
 db.then(() => {
   app.listen(PORT, async () => {
