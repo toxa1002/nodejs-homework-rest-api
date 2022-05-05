@@ -1,5 +1,15 @@
-const app = require('./app')
+const { mkdir } = require('fs/promises');
+const app = require('./app');
+const db = require('./db/dbMongoose');
 
-app.listen(3000, () => {
-  console.log("Server running. Use our API on port: 3000")
-})
+const { PORT } = require('./helpers/constants');
+
+db.then(() => {
+  app.listen(PORT, async () => {
+    await mkdir(process.env.UPLOAD_FOLDER, { recursive: true });
+    console.log(`Server running at port: ${PORT}`);
+  });
+}).catch(error => {
+  console.error(`Server not running. Error message: ${error.message}`);
+  process.exit(1);
+});
